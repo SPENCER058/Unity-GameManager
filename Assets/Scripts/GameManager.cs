@@ -1,33 +1,43 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-	public delegate void GameOverEventHandler ();
-	public static event GameOverEventHandler OnGameOver;
+	[SerializeField] private PlayerController playerController;
+	[SerializeField] private Player player;
+	[SerializeField] private Enemy enemy;
 
 	private void Start () {
-		OnEnable();
+		playerController.AttackInput += OnAttackInput;
+		playerController.HealInput += OnPlayerHeal;
+		enemy.HPChange += OnUIEnemyHPChange;
+		player.HPChange += OnUIPlayerHPChange;
 	}
 
-	private void Update () {
-		if (Input.GetKeyDown("a")) {
-			GameOver();
-		}
+	private void OnUIPlayerHPChange () {
+		throw new NotImplementedException();
 	}
 
-	public void GameOver () {
-		OnGameOver?.Invoke();
+	private void OnUIEnemyHPChange () {
+		throw new NotImplementedException();
 	}
 
-	private void OnEnable () {
-		GameManager.OnGameOver += HandleGameOver;
+	private void OnPlayerHeal () {
+		player.Heal();
 	}
 
-	private void OnDisable () {
-		GameManager.OnGameOver -= HandleGameOver;
+	private void OnAttackInput () {
+		// Debug.Log(player.GetAttackDamageValue());
+		PlayerAttack();
+		// Debug.Log(enemy.GetHPValue());
 	}
 
-	private void HandleGameOver () {
-		Debug.Log("Game Over");
+	private void EnemyAttack () {
+		player.GetDamaged(enemy.GetAttackDamageValue());
 	}
+
+	private void PlayerAttack () {
+		enemy.GetDamaged(player.GetAttackDamageValue());
+	}
+
 }
