@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	[SerializeField] private Image playerHPBarFill;
+	[SerializeField] private Image enemyHpBarFill;
+
+	public void UpdatePlayerHPBar () {
+		Debug.Log("Player UI Update Success");
+	}
+
+	public void UpdateEnemyHPBar () {
+		Debug.Log("Enemy UI Update Success");
+	}	
+
 }

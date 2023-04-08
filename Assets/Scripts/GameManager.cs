@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+	[SerializeField] private UIManager uiManager;
+
 	[SerializeField] private PlayerController playerController;
 	[SerializeField] private Player player;
 	[SerializeField] private Enemy enemy;
@@ -10,16 +12,18 @@ public class GameManager : MonoBehaviour
 	private void Start () {
 		playerController.AttackInput += OnAttackInput;
 		playerController.HealInput += OnPlayerHeal;
-		enemy.HPChange += OnUIEnemyHPChange;
+		
 		player.HPChange += OnUIPlayerHPChange;
+
+		enemy.HPChange += OnUIEnemyHPChange; 
 	}
 
 	private void OnUIPlayerHPChange () {
-		throw new NotImplementedException();
+		uiManager.UpdatePlayerHPBar();
 	}
 
 	private void OnUIEnemyHPChange () {
-		throw new NotImplementedException();
+		uiManager.UpdateEnemyHPBar();
 	}
 
 	private void OnPlayerHeal () {
@@ -27,9 +31,7 @@ public class GameManager : MonoBehaviour
 	}
 
 	private void OnAttackInput () {
-		// Debug.Log(player.GetAttackDamageValue());
 		PlayerAttack();
-		// Debug.Log(enemy.GetHPValue());
 	}
 
 	private void EnemyAttack () {
