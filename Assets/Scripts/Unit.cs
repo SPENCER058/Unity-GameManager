@@ -9,7 +9,11 @@ public class Unit : MonoBehaviour
 	[SerializeField] private float attackDamage;
 	[SerializeField] private float healPoint;
 
-	public Action HPChange;
+	public Action<float> HPChange;
+		
+	private void Start () {
+		maxHp = hp;
+	}
 
 	public void Heal () {
 		if (hp < maxHp) {
@@ -37,6 +41,6 @@ public class Unit : MonoBehaviour
 	}
 
 	private void HPValueChange () {
-		HPChange?.Invoke();
+		HPChange?.Invoke(hp / maxHp);
 	}
 }

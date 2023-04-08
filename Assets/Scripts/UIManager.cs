@@ -7,12 +7,12 @@ public class UIManager : MonoBehaviour
 	[SerializeField] private Image playerHPBarFill;
 	[SerializeField] private Image enemyHpBarFill;
 
-	public void UpdatePlayerHPBar () {
-		Debug.Log("Player UI Update Success");
+	public void UpdatePlayerHPBar (float hpPercentage) {
+		playerHPBarFill.fillAmount = hpPercentage;
 	}
 
-	public void UpdateEnemyHPBar () {
-		Debug.Log("Enemy UI Update Success");
+	public void UpdateEnemyHPBar (float hpPercentage) {
+		enemyHpBarFill.fillAmount = hpPercentage;
 	}	
 
 }
