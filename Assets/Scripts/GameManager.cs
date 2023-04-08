@@ -18,12 +18,12 @@ public class GameManager : MonoBehaviour
 		enemy.HPChange += OnUIEnemyHPChange; 
 	}
 
-	private void OnUIPlayerHPChange () {
-		uiManager.UpdatePlayerHPBar();
+	private void OnUIPlayerHPChange (float percentageHp) {
+		uiManager.UpdatePlayerHPBar(percentageHp);
 	}
 
-	private void OnUIEnemyHPChange () {
-		uiManager.UpdateEnemyHPBar();
+	private void OnUIEnemyHPChange (float percentageHp) {
+		uiManager.UpdateEnemyHPBar(percentageHp);
 	}
 
 	private void OnPlayerHeal () {
